@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <a-locale-provider :locale="pt_BR">
+    <div id="app">   
+      <Main />
+    </div>
+  </a-locale-provider>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import pt_BR from 'ant-design-vue/lib/locale-provider/pt_BR'
+import Main from '@/layout/Main';
 
 export default {
-  name: 'App',
+  name: 'app',
+  data() {
+    return {
+      pt_BR,
+    }
+  },
   components: {
-    HelloWorld
+    Main
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
