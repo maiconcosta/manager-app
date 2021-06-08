@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <Main />  
+    <Main />
   </div>
 </template>
 
 <script>
-import Main from '@/layout/Main'
+import Main from "@/layout/Main";
 export default {
   components: {
-    Main
-  }
-}
+    Main,
+  },
+};
 </script>
+<style>
+#app {
+  background-color: #f4f7fc;
+}
+</style>

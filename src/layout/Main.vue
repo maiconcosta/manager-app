@@ -3,7 +3,7 @@
     <div class="side">
       <Sidebar />
     </div>
-    <div class="content">    
+    <div class="content">
       <router-view />
     </div>
   </div>
@@ -24,6 +24,6 @@ export default {
   display: flex;
 }
 .content {
-  padding: 20px;
+  padding: 80px 50px;
 }
 </style>
