@@ -26,4 +26,7 @@ export default {
 .content {
   padding: 80px 50px;
 }
+.content >>> h2 {
+  margin-bottom: 30px;
+}
 </style>
