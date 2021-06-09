@@ -38,4 +38,15 @@ export default {
   font-size: 18px;
   padding-bottom: 5px;
 }
+
+@media (max-width: 768px) {
+  .menu-item a {
+    font-size: 8px;
+  }
+
+  .menu-item >>> .anticon {
+    font-size: 13px;
+    padding-bottom: 5px;
+  }
+}
 </style>

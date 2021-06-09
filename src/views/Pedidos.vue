@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h2>Pedidos</h2>
-    <a-row :gutter="16">
-      <a-col :span="12">
+    <a-row :gutter="[16, 8]">
+      <a-col :md="12">
         <Card
           >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
           commodi accusantium repellendus laudantium itaque, odio veritatis
@@ -10,7 +10,7 @@
           dolor blanditiis. Esse, eligendi.</Card
         >
       </a-col>
-      <a-col :span="12">
+      <a-col :md="12">
         <Card
           >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
           commodi accusantium repellendus laudantium itaque, odio veritatis

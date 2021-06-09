@@ -2,7 +2,7 @@
   <div class="clientes">
     <h2>Clientes</h2>
 
-    <a-row :gutter="16">
+    <a-row :gutter="[16, 8]">
       <a-col :md="16">
         <Card>
           <a-table
