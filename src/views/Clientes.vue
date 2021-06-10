@@ -12,13 +12,16 @@
             :pagination="pagination"
             :loading="loading"
             @change="handleTableChange"
+            size="small"
           >
-            <template slot="picture" slot-scope="picture">
+            <template #picture="picture">
               <a-avatar :src="picture.thumbnail" />
             </template>
 
-            <template slot="name" slot-scope="name">
-              {{ name.first }} {{ name.last }}
+            <template #name="name"> {{ name.first }} {{ name.last }} </template>
+
+            <template #date="registered">
+              {{ registered.date | dataBrasileira }}
             </template>
           </a-table>
         </Card>
@@ -39,6 +42,7 @@
 <script>
 import Card from "@/components/Card.vue";
 import axios from "axios";
+import { format } from "date-fns";
 
 const queryData = (params) => {
   return axios.get("https://randomuser.me/api", { params: params });
@@ -52,12 +56,6 @@ const columns = [
     scopedSlots: { customRender: "picture" },
   },
   {
-    title: "Id",
-    dataIndex: "id.value",
-    sorter: true,
-    width: "15%",
-  },
-  {
     title: "Nome",
     dataIndex: "name",
     sorter: true,
@@ -69,9 +67,10 @@ const columns = [
     width: "20%",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-    width: "30%",
+    title: "Data Cadastro",
+    dataIndex: "registered",
+    width: "25%",
+    scopedSlots: { customRender: "date" },
   },
 ];
 
@@ -120,6 +119,9 @@ export default {
         this.pagination = pagination;
       });
     },
+  },
+  filters: {
+    dataBrasileira: (date) => date && format(new Date(date), "dd/MM/yyyy"),
   },
 };
 </script>
