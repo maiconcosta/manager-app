@@ -20,9 +20,6 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  display: flex;
-}
 .content {
   padding: 80px 50px;
   margin-left: 100px;

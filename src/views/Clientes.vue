@@ -28,11 +28,30 @@
       </a-col>
       <a-col :md="8">
         <Card>
-          <h3>Card</h3>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-          ratione, quos incidunt id architecto, expedita nostrum ullam veritatis
-          cum ex amet dolor delectus voluptas, necessitatibus illo fuga
-          cupiditate tenetur error?
+          <div class="card-header">
+            <a-avatar
+              src="https://randomuser.me/api/portraits/women/84.jpg"
+              :size="128"
+            />
+            <h3>Megan Hansen</h3>
+          </div>
+          <a-divider></a-divider>
+          <div class="card-content">
+            <div class="card-content-row">
+              <span><b>Telefone:</b></span>
+              <span>(27) 99722-7489</span>
+            </div>
+            <div class="card-content-row">
+              <span><b>Data Cadastro:</b></span>
+              <span>11/02/2019</span>
+            </div>
+            <div class="card-content-row">
+              <span><b>Endereço:</b></span>
+              <span
+                >Rua Almirante Barroso, 109 - Praia do Suá - Vitória ES
+              </span>
+            </div>
+          </div>
         </Card>
       </a-col>
     </a-row>
@@ -125,3 +144,19 @@ export default {
   },
 };
 </script>
+<style scoped>
+.ant-card {
+  width: 100%;
+}
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-content-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+</style>
