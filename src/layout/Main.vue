@@ -20,10 +20,18 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  display: flex;
-}
 .content {
   padding: 80px 50px;
+  margin-left: 100px;
+}
+.content >>> h2 {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 20px;
+    margin-left: 60px;
+  }
 }
 </style>

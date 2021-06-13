@@ -13,7 +13,7 @@ export default {
 };
 </script>
 <style>
-#app {
-  background-color: #f4f7fc;
+body {
+  background-color: #f4f7fc !important;
 }
 </style>

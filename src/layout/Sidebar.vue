@@ -26,8 +26,15 @@ export default {
   width: 100px;
   height: 100vh;
   background: #27235e;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
 }
 </style>
