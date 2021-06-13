@@ -11,6 +11,7 @@
             :data-source="data"
             :pagination="pagination"
             :loading="loading"
+            :customRow="customRow"
             @change="handleTableChange"
             size="small"
           >
@@ -26,30 +27,27 @@
           </a-table>
         </Card>
       </a-col>
-      <a-col :md="8">
+      <a-col :md="8" v-if="usuarioSelecionado">
         <Card>
           <div class="card-header">
-            <a-avatar
-              src="https://randomuser.me/api/portraits/women/84.jpg"
-              :size="128"
-            />
-            <h3>Megan Hansen</h3>
+            <a-avatar :src="usuarioSelecionado.avatar" :size="128" />
+            <h3>{{ nomeCompleto }}</h3>
           </div>
           <a-divider></a-divider>
           <div class="card-content">
             <div class="card-content-row">
               <span><b>Telefone:</b></span>
-              <span>(27) 99722-7489</span>
+              <span>{{ usuarioSelecionado.telefone }}</span>
             </div>
             <div class="card-content-row">
               <span><b>Data Cadastro:</b></span>
-              <span>11/02/2019</span>
+              <span>{{
+                usuarioSelecionado.dataCadastro | dataBrasileira
+              }}</span>
             </div>
             <div class="card-content-row">
               <span><b>Endereço:</b></span>
-              <span
-                >Rua Almirante Barroso, 109 - Praia do Suá - Vitória ES
-              </span>
+              <span>{{ endereco }}</span>
             </div>
           </div>
         </Card>
@@ -59,12 +57,12 @@
 </template>
 
 <script>
-import Card from "@/components/Card.vue";
+import Card from "@/components/Card";
 import axios from "axios";
 import { format } from "date-fns";
 
 const queryData = (params) => {
-  return axios.get("https://randomuser.me/api", { params: params });
+  return axios.get("https://randomuser.me/api?nat=br", { params: params });
 };
 
 const columns = [
@@ -104,6 +102,7 @@ export default {
       pagination: {},
       loading: false,
       columns,
+      usuarioSelecionado: null,
     };
   },
   mounted() {
@@ -111,7 +110,6 @@ export default {
   },
   methods: {
     handleTableChange(pagination, filters, sorter) {
-      console.log(pagination);
       const pager = { ...this.pagination };
       pager.current = pagination.current;
       this.pagination = pager;
@@ -123,6 +121,24 @@ export default {
         ...filters,
       });
     },
+    customRow(record) {
+      return {
+        on: {
+          click: () => {
+            const { cell, name, picture, registered, location } = record;
+
+            this.usuarioSelecionado = {
+              nome: name,
+              telefone: cell,
+              dataCadastro: registered.date,
+              endereco: location,
+              avatar: picture.large,
+            };
+          },
+        },
+      };
+    },
+
     fetch(params = {}) {
       this.loading = true;
       queryData({
@@ -142,11 +158,20 @@ export default {
   filters: {
     dataBrasileira: (date) => date && format(new Date(date), "dd/MM/yyyy"),
   },
+  computed: {
+    nomeCompleto: function() {
+      return `${this.usuarioSelecionado.nome.first} ${this.usuarioSelecionado.nome.last}`;
+    },
+
+    endereco: function() {
+      return `${this.usuarioSelecionado.endereco.street.name}, ${this.usuarioSelecionado.endereco.street.number} - ${this.usuarioSelecionado.endereco.city}`;
+    },
+  },
 };
 </script>
 <style scoped>
-.ant-card {
-  width: 100%;
+.ant-card >>> .ant-table-row {
+  cursor: pointer;
 }
 .card-header {
   display: flex;
