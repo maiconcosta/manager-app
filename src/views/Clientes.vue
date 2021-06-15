@@ -3,7 +3,7 @@
     <h2>Clientes</h2>
 
     <a-row :gutter="[16, 8]">
-      <a-col :md="16">
+      <a-col :md="18">
         <Card>
           <a-table
             :columns="columns"
@@ -27,7 +27,7 @@
           </a-table>
         </Card>
       </a-col>
-      <a-col :md="8" v-if="usuarioSelecionado">
+      <a-col :md="6" v-if="usuarioSelecionado">
         <Card>
           <div class="card-header">
             <a-avatar :src="usuarioSelecionado.avatar" :size="128" />
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import Card from "@/components/Card";
+import Card from "@/components/cards/Card";
 import axios from "axios";
 import { format } from "date-fns";
 

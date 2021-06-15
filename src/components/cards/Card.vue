@@ -1,5 +1,5 @@
 <template>
-  <a-card> <slot /></a-card>
+  <a-card hoverable> <slot /></a-card>
 </template>
 
 <style scoped>
