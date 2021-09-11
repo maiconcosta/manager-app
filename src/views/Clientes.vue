@@ -58,11 +58,11 @@
 
 <script>
 import Card from "@/components/cards/Card";
-import axios from "axios";
+import ruApi from "@/services/ruApi";
 import { format } from "date-fns";
 
 const queryData = (params) => {
-  return axios.get("https://randomuser.me/api?nat=br", { params: params });
+  return ruApi.get("?nat=br", { params: params });
 };
 
 const columns = [
